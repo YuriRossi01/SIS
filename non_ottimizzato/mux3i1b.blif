@@ -1,0 +1,17 @@
+#Multiplexer 3 ingressi a 1 bit
+
+.model mux3i1b
+
+.inputs ACIDO BASICO I2 I1 I0 
+.outputs O
+
+#se acido e basico sono a 0 0 sceglie i2
+#se 1        0                        i1
+#se 0        1                        i0   
+.names ACIDO BASICO I2 I1 I0 O
+001-- 1
+10-1- 1
+01--1 1
+
+
+.end

@@ -1,0 +1,15 @@
+# FUNZIONE MINORE UGUALE A 8 BIT
+
+.model minoreuguale8b 
+.inputs ph7 ph6 ph5 ph4 ph3 ph2 ph1 ph0 bit7 bit6 bit5 bit4 bit3 bit2 bit1 bit0
+.outputs O0 
+
+# usa maggiore per vedere se Cx > Dx
+#phx(paramentro nel maggiore8b.blif) = phx(paramentro presente in minoreuguale8b.blif) uguale per i bitx=bitx
+.search maggiore8b.blif
+.subckt maggiore8b ph7=ph7 ph6=ph6 ph5=ph5 ph4=ph4 ph3=ph3 ph2=ph2 ph1=ph1 ph0=ph0 bit7=bit7 bit6=bit6 bit5=bit5 bit4=bit4 bit3=bit3 bit2=bit2 bit1=bit1 bit0=bit0 out=z 
+
+# nega il risultato
+.names z O0
+0 1 
+.end

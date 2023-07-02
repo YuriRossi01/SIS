@@ -1,0 +1,44 @@
+.model contatore
+.inputs start_dp neutro rst_dp
+.outputs clk7 clk6 clk5 clk4 clk3 clk2 clk1 clk0
+
+#importo i vari componenti
+.search mux2i8b.blif
+.search registro8b.blif
+.search sommatore_clk.blif
+.search uno.blif
+.search zero.blif
+
+#creo la costante ZERO
+.subckt zero out=Zero
+#creo la costante Uno
+.subckt uno out=Uno
+
+#il primo mux(quello con start_dp)
+.subckt mux2i8b SEGNALE=start_dp A7=Zero A6=Zero A5=Zero A4=Zero A3=Zero A2=Zero A1=Zero A0=Zero B7=sclk7 B6=sclk6 B5=sclk5 B4=sclk4 B3=sclk3 B2=sclk2 B1=sclk1 B0=sclk0 O7=pmux7 O6=pmux6 O5=pmux5 O4=pmux4 O3=pmux3 O2=pmux2 O1=pmux1 O0=pmux0
+
+
+#mux per azzerare il registro del CLK
+.subckt mux2i8b SEGNALE=rst_dp A7=Zero A6=Zero A5=Zero A4=Zero A3=Zero A2=Zero A1=Zero A0=Zero B7=pmux7 B6=pmux6 B5=pmux5 B4=pmux4 B3=pmux3 B2=pmux2 B1=pmux1 B0=pmux0 O7=mux7 O6=mux6 O5=mux5 O4=mux4 O3=mux3 O2=mux2 O1=mux1 O0=mux0
+
+
+#il registro che prende in input dal primo mux
+.subckt registro8b I7=mux7 I6=mux6 I5=mux5 I4=mux4 I3=mux3 I2=mux2 I1=mux1 I0=mux0 O7=reg_clk7 O6=reg_clk6 O5=reg_clk5 O4=reg_clk4 O3=reg_clk3 O2=reg_clk2 O1=reg_clk1 O0=reg_clk0
+
+
+#sommatore +1
+.subckt sommatore_clk A7=reg_clk7 A6=reg_clk6 A5=reg_clk5 A4=reg_clk4 A3=reg_clk3 A2=reg_clk2 A1=reg_clk1 A0=reg_clk0 B7=Zero B6=Zero B5=Zero B4=Zero B3=Zero B2=Zero B1=Zero B0=Zero O7=sclk7 O6=sclk6 O5=sclk5 O4=sclk4 O3=sclk3 O2=sclk2 O1=sclk1 O0=sclk0
+
+
+#mux finale che da in ouput il NCLK
+.subckt mux2i8b SEGNALE=neutro A7=mux7 A6=mux6 A5=mux5 A4=mux3 A3=mux3 A2=mux2 A1=mux1 A0=mux0 B7=Zero B6=Zero B5=Zero B4=Zero B3=Zero B2=Zero B1=Zero B0=Zero O7=Lclk7 O6=Lclk6 O5=Lclk5 O4=Lclk4 O3=Lclk3 O2=Lclk2 O1=Lclk1 O0=Lclk0
+
+
+#mux per il reset
+.subckt mux2i8b SEGNALE=rst_dp A7=Zero A6=Zero A5=Zero A4=Zero A3=Zero A2=Zero A1=Zero A0=Zero B7=Lclk7 B6=Lclk6 B5=Lclk5 B4=Lclk4 B3=Lclk3 B2=Lclk2 B1=Lclk1 B0=Lclk0 O7=clk7 O6=clk6 O5=clk5 O4=clk4 O3=clk3 O2=clk2 O1=clk1 O0=clk0
+
+
+
+
+
+.end

@@ -1,0 +1,14 @@
+.model datapath
+.inputs ph7 ph6 ph5 ph4 ph3 ph2 ph1 ph0 start_dp Acido Basico rst_dp 
+.outputs fph7 fph6 fph5 fph4 fph3 fph2 fph1 fph0 Nclk7 Nclk6 Nclk5 Nclk4 Nclk3 Nclk2 Nclk1 Nclk0 neutro_ph
+
+.search rendeNeutro.blif
+.search contatore.blif
+
+.subckt contatore start_dp=start_dp neutro=neutro_ph rst_dp=rst_dp clk7=Nclk7 clk6=Nclk6 clk5=Nclk5 clk4=Nclk4 clk3=Nclk3 clk2=Nclk2 clk1=Nclk1 clk0=Nclk0
+
+
+.subckt rendeNeutro ph7=ph7 ph6=ph6 ph5=ph5 ph4=ph4 ph3=ph3 ph2=ph2 ph1=ph1 ph0=ph0 start_dp=start_dp Acido=Acido Basico=Basico rst_dp=rst_dp fph7=fph7 fph6=fph6 fph5=fph5 fph4=fph4 fph3=fph3 fph2=fph2 fph1=fph1 fph0=fph0 neutro=neutro_ph
+
+
+.end

@@ -1,0 +1,213 @@
+.model FSMD
+.inputs RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0
+.outputs fine_operazione errore_sensore valvola_acido valvola_basico fine_ph7 \
+fine_ph6 fine_ph5 fine_ph4 fine_ph3 fine_ph2 fine_ph1 fine_ph0 Nclk7 Nclk6 \
+Nclk5 Nclk4 Nclk3 Nclk2 Nclk1 Nclk0
+.latch    [5] LatchOut_v11   0
+.latch    [6] LatchOut_v12   0
+.latch    [7] LatchOut_v13   0
+.latch    mux_3ing7 reg_ph7 re NIL 0
+.latch    mux_3ing6 reg_ph6 re NIL 0
+.latch    mux_3ing5 reg_ph5 re NIL 0
+.latch    mux_3ing4 reg_ph4 re NIL 0
+.latch    mux_3ing3 reg_ph3 re NIL 0
+.latch    mux_3ing2 reg_ph2 re NIL 0
+.latch    mux_3ing1 reg_ph1 re NIL 0
+.latch    mux_3ing0 reg_ph0 re NIL 0
+.latch    mux7 reg_clk7 re NIL 0
+.latch    mux6 reg_clk6 re NIL 0
+.latch    mux5 reg_clk5 re NIL 0
+.latch    mux4 reg_clk4 re NIL 0
+.latch    mux3 reg_clk3 re NIL 0
+.latch    mux2 reg_clk2 re NIL 0
+.latch    mux1 reg_clk1 re NIL 0
+.latch    mux0 reg_clk0 re NIL 0
+.names RST LatchOut_v11 LatchOut_v13 LatchOut_v12 [90] [65] fine_operazione
+-1--1- 1
+----10 1
+010--- 1
+--011- 1
+.names RST str_dp LatchOut_v11 LatchOut_v13 [951] errore_sensore
+-0--1 1
+0-01- 1
+.names RST pH6 pH5 fine_operazione LatchOut_v13 LatchOut_v12 [946] [960] \
+valvola_acido
+-1----1- 1
+--1---1- 1
+------11 1
+0--001-- 1
+.names RST pH7 LatchOut_v11 LatchOut_v13 [90] [951] valvola_basico
+-0--01 1
+0-110- 1
+.names mux_ph7 [90] fine_ph7
+11 1
+.names mux_ph6 [90] fine_ph6
+11 1
+.names mux_ph5 [90] fine_ph5
+11 1
+.names mux_ph4 [90] fine_ph4
+11 1
+.names mux_ph3 [90] fine_ph3
+11 1
+.names mux_ph2 [90] fine_ph2
+11 1
+.names [90] [948] fine_ph1
+11 1
+.names [90] [949] fine_ph0
+11 1
+.names mux7 [90] Nclk7
+11 1
+.names mux6 [90] Nclk6
+11 1
+.names mux5 [90] Nclk5
+11 1
+.names mux2 [90] Nclk2
+11 1
+.names mux1 [90] Nclk1
+11 1
+.names mux0 [90] Nclk0
+11 1
+.names pH7 pH6 pH5 [951] [960] str_dp
+0--1- 1
+-0-1- 1
+--01- 1
+---10 1
+.names fine_operazione valvola_basico [5]
+1- 1
+-1 1
+.names RST START LatchOut_v12 [6]
+01- 1
+0-1 1
+.names errore_sensore valvola_basico [7]
+1- 1
+-1 1
+.names str_dp reg_ph7 [946] mux_ph7
+--1 1
+01- 1
+.names str_dp pH6 reg_ph6 mux_ph6
+11- 1
+0-1 1
+.names str_dp pH5 reg_ph5 mux_ph5
+11- 1
+0-1 1
+.names str_dp pH4 reg_ph4 mux_ph4
+11- 1
+0-1 1
+.names str_dp pH3 reg_ph3 mux_ph3
+11- 1
+0-1 1
+.names str_dp pH2 reg_ph2 mux_ph2
+11- 1
+0-1 1
+.names mux6 reg_clk7 [65] reg_clk6 [952] mux7
+11--- 1
+-1--1 1
+0011- 1
+.names RST str_dp mux_ph7 mux_ph6 mux_ph5 mux_ph4 mux_ph3 mux_ph2 reg_ph1 \
+reg_ph0 [65] [953] [961] [90]
+0-0111------- 1
+-11--000---01 1
+--1--000001-1 1
+.names [65] reg_clk6 [952] mux6
+-11 1
+100 1
+.names [65] reg_clk5 [954] mux5
+111 1
+100 1
+.names mux3 [90] [61]
+11 1
+.names mux0 reg_clk2 reg_clk1 reg_clk0 [65] mux2
+11--- 1
+-10-1 1
+-0111 1
+.names mux0 reg_clk1 reg_clk0 [65] mux1
+11-- 1
+-011 1
+.names reg_clk0 [65] mux0
+01 1
+.names mux_ph7 mux_ph5 mux_3ing6 mux_3ing5 [950] [961] mux_3ing7
+1---1- 1
+111--- 1
+1-01-- 1
+0-1--1 1
+.names valvola_acido mux_ph6 mux_ph5 mux_3ing5 [418] [950] [961] mux_3ing6
+-1---1- 1
+-111--- 1
+1--1--1 1
+-0101-- 1
+.names mux_ph5 mux_ph4 [418] [426] [928] mux_3ing5
+1--1- 1
+101-- 1
+11--1 1
+0110- 1
+00-01 1
+.names valvola_acido RST [418]
+00 1
+.names mux_ph3 mux_ph2 [418] [928] [426]
+0-1- 1
+-01- 1
+1--1 1
+.names mux_ph4 [418] [426] mux_3ing3 mux_3ing4
+1-1- 1
+010- 1
+0-01 1
+.names mux_ph3 mux_ph2 [418] [426] mux_3ing2 [928] mux_3ing3
+---0-1 1
+1-11-- 1
+-1-10- 1
+.names valvola_basico mux_ph2 [418] [928] mux_3ing2
+-1-1 1
+101- 1
+.names [945] [948] mux_3ing1
+11 1
+.names [945] [949] mux_3ing0
+11 1
+.names str_dp RST [65]
+00 1
+.names mux2 [65] reg_clk2 TEMP3 reg_clk3 mux3
+-1-01 1
+0110- 1
+.names reg_clk3 reg_clk2 reg_clk1 reg_clk0 TEMP3
+1111 1
+.names reg_clk4 TEMP3 [65] mux4
+011 1
+101 1
+.names [61] Nclk4
+1 1
+.names [61] Nclk3
+1 1
+.names RST valvola_basico [928]
+00 1
+.names [418] [928] [945]
+1- 1
+-1 1
+.names pH7 str_dp [946]
+11 1
+.names pH1 str_dp reg_ph1 [948]
+11- 1
+-01 1
+.names pH0 str_dp reg_ph0 [949]
+11- 1
+-01 1
+.names mux_ph5 mux_3ing5 [418] [928] [950]
+0-1- 1
+-0-1 1
+.names [6] LatchOut_v12 [951]
+10 1
+.names mux5 [65] reg_clk5 [952]
+1-- 1
+-10 1
+.names pH1 pH0 [953]
+1- 1
+-1 1
+.names reg_clk4 TEMP3 [954]
+0- 1
+-0 1
+.names pH4 pH3 pH2 [953] [960]
+1--- 1
+-1-- 1
+--1- 1
+---1 1
+.names mux_ph6 mux_ph5 [961]
+00 1
+.end

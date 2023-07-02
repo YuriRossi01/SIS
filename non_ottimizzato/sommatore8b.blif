@@ -1,0 +1,22 @@
+#Sommatore a 8 bit
+# Esegue la somma tra Ax e Bx (e riporto in ingresso CIN).
+# Ox e' l'uscita e COUT e' il riporto in uscita
+
+.model sommatore8b
+.inputs A7 A6 A5 A4 A3 A2 A1 A0 B7 B6 B5 B4 B3 B2 B1 B0 CIN 
+.outputs O7 O6 O5 O4 O3 O2 O1 O0 COUT 
+
+#
+.search sommatore1b.blif 
+
+#Uso 8 sommatori a 1 bit
+.subckt sommatore1b A=A0 B=B0 CIN=CIN O=O0 COUT=TEMP0 
+.subckt sommatore1b A=A1 B=B1 CIN=TEMP0 O=O1 COUT=TEMP1 
+.subckt sommatore1b A=A2 B=B2 CIN=TEMP1 O=O2 COUT=TEMP2
+.subckt sommatore1b A=A3 B=B3 CIN=TEMP2 O=O3 COUT=TEMP3
+.subckt sommatore1b A=A4 B=B4 CIN=TEMP3 O=O4 COUT=TEMP4 
+.subckt sommatore1b A=A5 B=B5 CIN=TEMP4 O=O5 COUT=TEMP5
+.subckt sommatore1b A=A6 B=B6 CIN=TEMP5 O=O6 COUT=TEMP6
+.subckt sommatore1b A=A7 B=B7 CIN=TEMP6 O=O7 COUT=COUT
+
+.end

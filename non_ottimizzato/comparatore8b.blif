@@ -1,0 +1,19 @@
+.model comparatore8
+.inputs ph7 ph6 ph5 ph4 ph3 ph2 ph1 ph0 bit7 bit6 bit5 bit4 bit3 bit2 bit1 bit0 
+.outputs O0 
+
+# Usa porta xnor per verificare che tutti i bit sono uguali
+.search xnor.blif
+.subckt xnor A=ph7 B=bit7 O=X7 
+.subckt xnor A=ph6 B=bit6 O=X6 
+.subckt xnor A=ph5 B=bit5 O=X5 
+.subckt xnor A=ph4 B=bit4 O=X4 
+.subckt xnor A=ph3 B=bit3 O=X3 
+.subckt xnor A=ph2 B=bit2 O=X2 
+.subckt xnor A=ph1 B=bit1 O=X1 
+.subckt xnor A=ph0 B=bit0 O=X0 
+
+.names X7 X6 X5 X4 X3 X2 X1 X0 O0 
+11111111 1 
+
+.end

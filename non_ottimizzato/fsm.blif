@@ -1,0 +1,84 @@
+.model fsm
+.inputs RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 NEUTRO
+#RST (1 bit)
+#START(1 bit)
+#pH (8 bit, 4 parte intera e 4 per la parte decimale)
+#NEUTRO(1 bit)
+.outputs FINE_OPERAZIONE ERRORE_SENSORE VALVOLA_ACIDO VALVOLA_BASICO STR_DP
+#FINE_OPERAZIONE (1 bit)
+#ERRORE_SENSORE (1 bit)
+#VALVOLA_ACIDO (1 bit)
+#VALVOLA_BASICO (1 bit)
+
+.start_kiss
+.i 11 # Numero input
+.o 5 # Numero output
+.s 5 # Numero stati
+.p 30 # Numero transizioni
+.r RST #Stato di Reset
+
+#tabella transizioni (ingressi, stato presente, stato prossimo, uscita)
+
+#Evento di RESET 
+1---------0 RST RST 00000 
+1---------0 ACIDO RST 00000 
+1---------0 BASICO RST 00000
+1---------0 NEUTRO RST 00000 
+1---------0 ERRORE RST 00000 
+
+#RST->ERRORE  (caso ERRORE SENSORE)
+01111----10 RST ERRORE 01000
+#ERRORE-ERRORE
+0---------- ERRORE ERRORE 01000
+
+
+#RST->ACIDO (0<=ph<7)
+0100------- RST ACIDO 00101
+01010------ RST ACIDO 00101
+010110----- RST ACIDO 00101
+#ACIDO->ACIDO
+0-000-----0 ACIDO ACIDO 00010
+0-001-----0 ACIDO ACIDO 00010
+0-0101----0 ACIDO ACIDO 00010
+0-01-0----0 ACIDO ACIDO 00010
+#ACIDO-NEUTRO
+0---------1 ACIDO NEUTRO 10000
+
+
+#RST->BASICO
+01101------ RST BASICO 00011
+0110-1----- RST BASICO 00011
+0110--1---- RST BASICO 00011
+0110---1--- RST BASICO 00011
+0110----1-- RST BASICO 00011
+0110-----1- RST BASICO 00011
+01110------ RST BASICO 00011
+0111100000- RST BASICO 00011
+#BASICO-BASICO
+0-10------0 BASICO BASICO 00100
+0-110-----0 BASICO BASICO 00100
+0-111000000 BASICO BASICO 00100
+#BASICO-NEUTRO
+0---------1 BASICO NEUTRO 10000
+
+
+#RST-NEUTRO
+010111----1 RST NEUTRO 10001
+01100000001 RST NEUTRO 10001
+#NEUTRO-NEUTRO
+0---------- NEUTRO NEUTRO 10000
+
+
+.end_kiss
+
+
+# inizio codifica degli stati
+# CODIFICA MANUALE: nome dello stato - codifica che volgio usare
+.code RST 000
+.code ERRORE 001
+.code BASICO 010
+.code ACIDO 011
+.code NEUTRO 100
+
+
+.end

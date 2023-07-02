@@ -1,0 +1,20 @@
+.model FSMD
+.inputs RST START pH7 pH6 pH5 pH4 pH3 pH2 pH1 pH0 
+.outputs fine_operazione errore_sensore valvola_acido valvola_basico fine_ph7 fine_ph6 fine_ph5 fine_ph4 fine_ph3 fine_ph2 fine_ph1 fine_ph0 Nclk7 Nclk6 Nclk5 Nclk4 Nclk3 Nclk2 Nclk1 Nclk0 
+
+#importo fsm e datapath
+.search fsm.blif
+.search datapath.blif
+
+
+
+
+# passa input e ottieni gli output dei due circuiti.
+.subckt fsm RST=RST START=START pH7=pH7 pH6=pH6 pH5=pH5 pH4=pH4 pH3=pH3 pH2=pH2 pH1=pH1 pH0=pH0 NEUTRO=ph_neutro FINE_OPERAZIONE=fine_operazione ERRORE_SENSORE=errore_sensore VALVOLA_ACIDO=valvola_acido VALVOLA_BASICO=valvola_basico STR_DP=str_dp
+
+.subckt datapath ph7=pH7 ph6=pH6 ph5=pH5 ph4=pH4 ph3=pH3 ph2=pH2 ph1=pH1 ph0=pH0 start_dp=str_dp Acido=valvola_basico Basico=valvola_acido rst_dp=RST fph7=fine_ph7 fph6=fine_ph6 fph5=fine_ph5 fph4=fine_ph4 fph3=fine_ph3 fph2=fine_ph2 fph1=fine_ph1 fph0=fine_ph0 Nclk7=Nclk7 Nclk6=Nclk6 Nclk5=Nclk5 Nclk4=Nclk4 Nclk3=Nclk3 Nclk2=Nclk2 Nclk1=Nclk1 Nclk0=Nclk0 neutro_ph=ph_neutro
+
+
+
+
+.end

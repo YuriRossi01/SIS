@@ -1,0 +1,9 @@
+.model fammiSomma
+.inputs inph7 inph6 inph5 inph4 inph3 inph2 inph1 inph0
+.outputs oph7 oph6 oph5 oph4 oph3 oph2 oph1 oph0
+
+.search sommatore_ph.blif
+.subckt sommatore_ph A7=inph7 A6=inph6 A5=inph5 A4=inph4 A3=inph3 A2=inph2 A1=inph1 A0=inph0 O7=oph7 O6=oph6 O5=oph5 O4=oph4 O3=oph3 O2=oph2 O1=oph1 O0=oph0
+
+
+.end

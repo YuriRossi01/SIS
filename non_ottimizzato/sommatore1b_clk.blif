@@ -1,0 +1,24 @@
+#Sommatore a 1 bit
+#
+# Esegue la somma tra bit CLK e I0 (e il riporto in ingresso CIN).
+# O e' il risultato e COUT e' il riporto in uscita
+#
+
+.model sommatore1b_clk
+.inputs  CLK I CIN
+.outputs O COUT
+
+.names CLK I TEMP 
+10 1 
+01 1 
+
+.names TEMP CIN O 
+10 1 
+01 1 
+
+.names CLK I CIN COUT 
+11- 1 
+1-1 1 
+-11 1 
+
+.end

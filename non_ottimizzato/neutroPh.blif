@@ -1,0 +1,11 @@
+.model neutroPH
+.inputs ph7in ph6in ph5in ph4in ph3in ph2in ph1in ph0in 
+.outputs fineph7 fineph6 fineph5 fineph4 fineph3 fineph2 fineph1 fineph0 
+
+#importo i componenti
+.search fammiSomma.blif
+
+
+.subckt fammiSomma inph7=ph7in inph6=ph6in inph5=ph5in inph4=ph4in inph3=ph3in inph2=ph2in inph1=ph1in inph0=ph0in oph7=fineph7 oph6=fineph6 oph5=fineph5 oph4=fineph4 oph3=fineph3 oph2=fineph2 oph1=fineph1 oph0=fineph0 
+
+.end

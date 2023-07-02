@@ -1,0 +1,30 @@
+.model controlloPH
+.inputs cph7 cph6 cph5 cph4 cph3 cph2 cph1 cph0
+.outputs out_controllo
+
+.search minoreuguale8b.blif
+.search maggioreUguale.blif
+.search and.blif
+.search uno.blif
+.search zero.blif
+
+
+#creo la costante ZERO
+.subckt zero out=Zero
+#creo la costante Uno
+.subckt uno out=Uno
+
+.subckt maggioreUguale m_ph7=cph7 m_ph6=cph6 m_ph5=cph5 m_ph4=cph4 m_ph3=cph3 m_ph2=cph2 m_ph1=cph1 m_ph0=cph0 out_maggiore_uguale=out_magg 
+
+.subckt minoreuguale8b ph7=cph7 ph6=cph6 ph5=cph5 ph4=cph4 ph3=cph3 ph2=cph2 ph1=cph1 ph0=cph0 bit7=Uno bit6=Zero bit5=Zero bit4=Zero bit3=Zero bit2=Zero bit1=Zero bit0=Zero O0=out_min
+
+#faccio and tra maggiore uguale(composto da comparatore e maggiore) e minoreuguale
+.subckt and A=out_magg B=out_min O=out_controllo
+
+
+
+
+
+
+
+.end

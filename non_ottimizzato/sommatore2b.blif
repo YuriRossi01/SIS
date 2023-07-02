@@ -1,0 +1,13 @@
+#Sommatore a 2 bit
+
+.model sommatore2b
+.inputs SOLUZIONE_ACIDA1 SOLUZIONE_ACIDA0 SOLUZIONE_BASICA1 SOLUZIONE_BASICA0 CIN 
+.outputs O1 O0 COUT 
+
+.search sommatore1b.blif 
+
+#Uso due sommatori a 1 bit
+.subckt sommatore1b A=SOLUZIONE_ACIDA0 B=SOLUZIONE_BASICA0 CIN=CIN O=O0 COUT=TEMP0 
+.subckt sommatore1b A=SOLUZIONE_ACIDA1 B=SOLUZIONE_BASICA1 CIN=TEMP0 O=O1 COUT=COUT 
+
+.end

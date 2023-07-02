@@ -1,0 +1,31 @@
+# FUNZIONE DI MAGGIORE A 8 BIT
+
+.model maggiore8b 
+.inputs ph7 ph6 ph5 ph4 ph3 ph2 ph1 ph0 bit7 bit6 bit5 bit4 bit3 bit2 bit1 bit0
+.outputs out 
+
+# Usa xor per vedere i bit diversi:
+# se due bit sono diversi, quel
+# dato che ha bit = 1 e' maggiore dell'altro
+
+.search xor.blif
+
+.subckt xor A=ph7 B=bit7 O=X7 
+.subckt xor A=ph6 B=bit6 O=X6 
+.subckt xor A=ph5 B=bit5 O=X5 
+.subckt xor A=ph4 B=bit4 O=X4 
+.subckt xor A=ph3 B=bit3 O=X3 
+.subckt xor A=ph2 B=bit2 O=X2 
+.subckt xor A=ph1 B=bit1 O=X1 
+.subckt xor A=ph0 B=bit0 O=X0 
+
+.names ph7 ph6 ph5 ph4 ph3 ph2 ph1 ph0 X7 X6 X5 X4 X3 X2 X1 X0 out 
+1-------1------- 1 
+-1------01------ 1 
+--1-----001----- 1 
+---1----0001---- 1 
+----1---00001--- 1 
+-----1--000001-- 1 
+------1-0000001- 1
+-------100000001 1
+.end

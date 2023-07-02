@@ -1,0 +1,61 @@
+.model rendeNeutro
+.inputs ph7 ph6 ph5 ph4 ph3 ph2 ph1 ph0 start_dp Acido Basico rst_dp
+.outputs fph7 fph6 fph5 fph4 fph3 fph2 fph1 fph0 neutro
+
+#importo i vari componenti 
+.search maggiore8b.blif 
+.search comparatore8b.blif
+.search minoreuguale8b.blif
+.search mux3i8b.blif
+.search mux2i8b.blif
+.search registro8b.blif
+.search fammiSomma.blif
+.search sottrattore8b.blif
+.search and.blif
+.search or.blif
+.search controlloPH.blif
+
+.search uno.blif
+.search zero.blif
+
+
+#creo la costante ZERO
+.subckt zero out=Zero
+#creo la costante Uno
+.subckt uno out=Uno
+
+
+#primo mux dove avviene la selezione con il segnale start_dp
+.subckt mux2i8b SEGNALE=start_dp A7=ph7 A6=ph6 A5=ph5 A4=ph4 A3=ph3 A2=ph2 A1=ph1 A0=ph0 B7=reg_ph7 B6=reg_ph6 B5=reg_ph5 B4=reg_ph4 B3=reg_ph3 B2=reg_ph2 B1=reg_ph1 B0=reg_ph0 O7=mux_ph7 O6=mux_ph6 O5=mux_ph5 O4=mux_ph4 O3=mux_ph3 O2=mux_ph2 O1=mux_ph1 O0=mux_ph0
+#creazione della somma
+.subckt fammiSomma inph7=mux_ph7 inph6=mux_ph6 inph5=mux_ph5 inph4=mux_ph4 inph3=mux_ph3 inph2=mux_ph2 inph1=mux_ph1 inph0=mux_ph0 oph7=sph7 oph6=sph6 oph5=sph5 oph4=sph4 oph3=sph3 oph2=sph2 oph1=sph1 oph0=sph0 
+# #creazione sottrazione 
+.subckt sottrattore8b SOLUZIONE_ACIDA7=mux_ph7 SOLUZIONE_ACIDA6=mux_ph6 SOLUZIONE_ACIDA5=mux_ph5 SOLUZIONE_ACIDA4=mux_ph4 SOLUZIONE_ACIDA3=mux_ph3 SOLUZIONE_ACIDA2=mux_ph2 SOLUZIONE_ACIDA1=mux_ph1 SOLUZIONE_ACIDA0=mux_ph0 SOLUZIONE_BASICA7=Zero SOLUZIONE_BASICA6=Zero SOLUZIONE_BASICA5=Zero SOLUZIONE_BASICA4=Zero SOLUZIONE_BASICA3=Uno SOLUZIONE_BASICA2=Zero SOLUZIONE_BASICA1=Zero SOLUZIONE_BASICA0=Zero S7=mph7 S6=mph6 S5=mph5 S4=mph4 S3=mph3 S2=mph2 S1=mph1 S0=mph0 IGNORE=ignore_sottrattore
+# #mux selezione (3 ingressi)
+.subckt mux3i8b ACIDO=Acido BASICO=Basico A7=mux_ph7 A6=mux_ph6 A5=mux_ph5 A4=mux_ph4 A3=mux_ph3 A2=mux_ph2 A1=mux_ph1 A0=mux_ph0 B7=sph7 B6=sph6 B5=sph5 B4=sph4 B3=sph3 B2=sph2 B1=sph1 B0=sph0 C7=mph7 C6=mph6 C5=mph5 C4=mph4 C3=mph3 C2=mph2 C1=mph1 C0=mph0 O7=Pmux_3ing7 O6=Pmux_3ing6 O5=Pmux_3ing5 O4=Pmux_3ing4 O3=Pmux_3ing3 O2=Pmux_3ing2 O1=Pmux_3ing1 O0=Pmux_3ing0
+
+
+
+#mux per azzerare il registro del ph
+.subckt mux2i8b SEGNALE=rst_dp A7=Zero A6=Zero A5=Zero A4=Zero A3=Zero A2=Zero A1=Zero A0=Zero B7=Pmux_3ing7 B6=Pmux_3ing6 B5=Pmux_3ing5 B4=Pmux_3ing4 B3=Pmux_3ing3 B2=Pmux_3ing2 B1=Pmux_3ing1 B0=Pmux_3ing0 O7=mux_3ing7 O6=mux_3ing6 O5=mux_3ing5 O4=mux_3ing4 O3=mux_3ing3 O2=mux_3ing2 O1=mux_3ing1 O0=mux_3ing0
+
+
+#creo registro del ph
+.subckt registro8b I7=mux_3ing7 I6=mux_3ing6 I5=mux_3ing5 I4=mux_3ing4 I3=mux_3ing3 I2=mux_3ing2 I1=mux_3ing1 I0=mux_3ing0 O7=reg_ph7 O6=reg_ph6 O5=reg_ph5 O4=reg_ph4 O3=reg_ph3 O2=reg_ph2 O1=reg_ph1 O0=reg_ph0
+
+
+#controllo il ph con <= , >= , OR , AND
+.subckt controlloPH cph7=mux_ph7 cph6=mux_ph6 cph5=mux_ph5 cph4=mux_ph4 cph3=mux_ph3 cph2=mux_ph2 cph1=mux_ph1 cph0=mux_ph0 out_controllo=neutro
+
+
+# #mux finale per dare in output il ph finale
+.subckt mux2i8b SEGNALE=neutro A7=mux_ph7 A6=mux_ph6 A5=mux_ph5 A4=mux_ph4 A3=mux_ph3 A2=mux_ph2 A1=mux_ph1 A0=mux_ph0 B7=Zero B6=Zero B5=Zero B4=Zero B3=Zero B2=Zero B1=Zero B0=Zero O7=Lph7 O6=Lph6 O5=Lph5 O4=Lph4 O3=Lph3 O2=Lph2 O1=Lph1 O0=Lph0
+
+
+#mux per il reset
+.subckt mux2i8b SEGNALE=rst_dp A7=Zero A6=Zero A5=Zero A4=Zero A3=Zero A2=Zero A1=Zero A0=Zero B7=Lph7 B6=Lph6 B5=Lph5 B4=Lph4 B3=Lph3 B2=Lph2 B1=Lph1 B0=Lph0 O7=fph7 O6=fph6 O5=fph5 O4=fph4 O3=fph3 O2=fph2 O1=fph1 O0=fph0
+
+
+
+
+.end

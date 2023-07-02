@@ -1,0 +1,11 @@
+#Porta logica not
+
+
+.model not
+.inputs SOLUZIONE_ACIDA
+.outputs O
+
+.names SOLUZIONE_ACIDA O
+0 1
+
+.end

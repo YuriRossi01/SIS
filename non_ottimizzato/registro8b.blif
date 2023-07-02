@@ -1,0 +1,19 @@
+#Registro 8 bit
+
+.model registro8b
+.inputs I7 I6 I5 I4 I3 I2 I1 I0
+.outputs O7 O6 O5 O4 O3 O2 O1 O0
+
+.search registro1b.blif
+
+#Uso otto registri da 1 bit
+.subckt registro1b I=I7 O=O7
+.subckt registro1b I=I6 O=O6
+.subckt registro1b I=I5 O=O5
+.subckt registro1b I=I4 O=O4
+.subckt registro1b I=I3 O=O3
+.subckt registro1b I=I2 O=O2
+.subckt registro1b I=I1 O=O1
+.subckt registro1b I=I0 O=O0
+
+.end

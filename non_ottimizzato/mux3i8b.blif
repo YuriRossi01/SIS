@@ -1,0 +1,21 @@
+#multiplexer 3 ingressi a 8 bit
+
+.model mux3i8b
+
+.inputs ACIDO BASICO A7 A6 A5 A4 A3 A2 A1 A0 B7 B6 B5 B4 B3 B2 B1 B0 C7 C6 C5 C4 C3 C2 C1 C0 
+.outputs O7 O6 O5 O4 O3 O2 O1 O0
+
+#Uso 8 multiplexer a 3 ingressi a 1 bit
+
+.search mux3i1b.blif
+
+.subckt mux3i1b ACIDO=ACIDO BASICO=BASICO I2=A7 I1=B7 I0=C7 O=O7
+.subckt mux3i1b ACIDO=ACIDO BASICO=BASICO I2=A6 I1=B6 I0=C6 O=O6
+.subckt mux3i1b ACIDO=ACIDO BASICO=BASICO I2=A5 I1=B5 I0=C5 O=O5
+.subckt mux3i1b ACIDO=ACIDO BASICO=BASICO I2=A4 I1=B4 I0=C4 O=O4
+.subckt mux3i1b ACIDO=ACIDO BASICO=BASICO I2=A3 I1=B3 I0=C3 O=O3
+.subckt mux3i1b ACIDO=ACIDO BASICO=BASICO I2=A2 I1=B2 I0=C2 O=O2
+.subckt mux3i1b ACIDO=ACIDO BASICO=BASICO I2=A1 I1=B1 I0=C1 O=O1
+.subckt mux3i1b ACIDO=ACIDO BASICO=BASICO I2=A0 I1=B0 I0=C0 O=O0
+
+.end

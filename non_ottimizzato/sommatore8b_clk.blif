@@ -1,0 +1,19 @@
+#Sommatore a 8 bit
+
+.model sommatore8b_clk
+.inputs CLK7 CLK6 CLK5 CLK4 CLK3 CLK2 CLK1 CLK0 I7 I6 I5 I4 I3 I2 I1 I0 CIN 
+.outputs O7 O6 O5 O4 O3 O2 O1 O0 COUT 
+
+.search sommatore1b_clk.blif 
+
+# usa 8 sommatori fulladder a 1 bit
+.subckt sommatore1b_clk CLK=CLK0 I=I0 CIN=CIN O=O0 COUT=C0 
+.subckt sommatore1b_clk CLK=CLK1 I=I1 CIN=TEMP0 O=O1 COUT=TEMP1 
+.subckt sommatore1b_clk CLK=CLK2 I=I2 CIN=TEMP1 O=O2 COUT=TEMP2
+.subckt sommatore1b_clk CLK=CLK3 I=I3 CIN=TEMP2 O=O3 COUT=TEMP3
+.subckt sommatore1b_clk CLK=CLK4 I=I4 CIN=TEMP3 O=O4 COUT=TEMP4 
+.subckt sommatore1b_clk CLK=CLK5 I=I5 CIN=TEMP4 O=O5 COUT=TEMP5
+.subckt sommatore1b_clk CLK=CLK6 I=I6 CIN=TEMP5 O=O6 COUT=TEMP6
+.subckt sommatore1b_clk CLK=CLK7 I=I7 CIN=TEMP6 O=O7 COUT=COUT
+
+.end

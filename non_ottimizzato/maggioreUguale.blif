@@ -1,0 +1,26 @@
+.model maggioreUguale
+.inputs m_ph7 m_ph6 m_ph5 m_ph4 m_ph3 m_ph2 m_ph1 m_ph0 
+.outputs out_maggiore_uguale
+
+.search maggiore8b.blif 
+.search or.blif
+.search comparatore8b.blif
+.search uno.blif
+.search zero.blif
+
+
+#creo la costante ZERO
+.subckt zero out=Zero
+#creo la costante Uno
+.subckt uno out=Uno
+
+.subckt comparatore8 ph7=m_ph7 ph6=m_ph6 ph5=m_ph5 ph4=m_ph4 ph3=m_ph3 ph2=m_ph2 ph1=m_ph1 ph0=m_ph0 bit7=Zero bit6=Uno bit5=Uno bit4=Uno bit3=Zero bit2=Zero bit1=Zero bit0=Zero O0=out_comparatore
+
+#connetto il maggiore
+.subckt maggiore8b ph7=m_ph7 ph6=m_ph6 ph5=m_ph5 ph4=m_ph4 ph3=m_ph3 ph2=m_ph2 ph1=m_ph1 ph0=m_ph0 bit7=Zero bit6=Uno bit5=Uno bit4=Uno bit3=Zero bit2=Zero bit1=Zero bit0=Zero out=out_maggiore
+
+#or tra maggiore e comparatore (per avere maggiore-uguale)
+.subckt or A=out_comparatore B=out_maggiore O=out_maggiore_uguale
+
+
+.end
